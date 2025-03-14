@@ -37,6 +37,13 @@ jobs:
           sudo apt-get install llvm-18-dev
           sudo apt-get install llvm-18-tools
           sudo apt-get install clang-format-18
+          if [ "${{ matrix.version }}" == "5.10" ]; then
+            sudo apt-get install --yes linux-headers-5.10.0-1050-azure
+          elif [ "${{ matrix.version }}" == "5.15" ]; then
+            sudo apt-get install --yes linux-headers-5.15.0-1050-azure
+          elif [ "${{ matrix.version }}" == "6.0" ]; then
+            sudo apt-get install --yes linux-headers-6.0.0-1050-azure
+          fi
 
       - name: Check code formatting with clang-format
         run: |

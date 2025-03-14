@@ -15,7 +15,7 @@ set(KERNEL_DIR "/lib/modules/${KOVID_LINUX_VERSION}/build" CACHE PATH "Path to t
 
 # Step 3: Check for Kernel Headers
 if(NOT EXISTS "${KERNEL_DIR}")
-    message(FATAL_ERROR "Kernel headers for version ${KOVID_LINUX_VERSION} not found in ${KERNEL_DIR}")
+    message(FATAL_ERROR "Kernel headers for version ${KOVID_LINUX_VERSION} not found in ${KERNEL_DIR}. Please install the specific kernel headers for version ${KOVID_LINUX_VERSION}.")
 endif()
 message("-- Linux Headers: ${KERNEL_DIR}")
 
