@@ -57,22 +57,19 @@ make PROCNAME="myprocname" DEPLOY=0 TEST_ENV=1
 make check-kovid
 ```
 
-NOTE: All tests must pass successfully before proceeding!
+### 5. Configure GitHub Actions Workflow
 
-```
-Total Discovered Tests: 24
-  Unsupported: 8 (25.00%)
-  Passed     : 16 (75.00%)
-```
+1. Open `.github/workflows/build.yml`.
+2. Ensure the workflow includes a matrix strategy to build different versions of the software.
+3. Verify that the workflow is triggered on push and pull request events for the `master` branch.
+4. Confirm that the workflow includes steps to check out the repository, install dependencies, build the software, and run tests for each version specified in the matrix.
 
-So, we want no failed tests, only `Passed` and `Unsupported`.
-
-### 5. Finalize Artifacts
+### 6. Finalize Artifacts
 
 1. Confirm all binaries, documentation, and test results are ready.
 2. Clean up any temporary files or directories not required in the release.
 
-### 6. Tag the Release
+### 7. Tag the Release
 
 From the repository:
 ```bash
@@ -81,13 +78,13 @@ git push origin vX.Y.Z
 ```
 Replace vX.Y.Z with your new version.
 
-### 7. Publish the Release
+### 8. Publish the Release
 
 1. Create a new release on GitHub.
 2. Use the newly created tag.
 3. Include CHANGELOG.md content in the release description.
 4. Optionally attach binary.
 
-### 8. Announcement (Optional)
+### 9. Announcement (Optional)
 
 Notify users and team members about the release, highlighting major changes and improvements.
