@@ -21,6 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         language: [ cpp ]
+        version: [ "5.10", "5.15", "6.0" ]
 
     steps:
       - name: Checkout repository
@@ -46,6 +47,13 @@ jobs:
           sudo apt-get install llvm-18-dev
           sudo apt-get install llvm-18-tools
           sudo apt-get install clang-format-18
+          if [ "${{ matrix.version }}" == "5.10" ]; then
+            sudo apt-get install --yes linux-headers-5.10.0-1050-azure
+          elif [ "${{ matrix.version }}" == "5.15" ]; then
+            sudo apt-get install --yes linux-headers-5.15.0-1050-azure
+          elif [ "${{ matrix.version }}" == "6.0" ]; then
+            sudo apt-get install --yes linux-headers-6.0.0-1050-azure
+          fi
 
       - name: Check code formatting with clang-format
         run: |
@@ -81,7 +89,7 @@ jobs:
           make clean
           make PROCNAME="myprocname" TEST_ENV=1
           mkdir build && cd build
-          cmake -DCICD_MACHINE=ON ..
+          cmake -DKOVID_LINUX_VERSION=${{ matrix.version }} ..
           make PROCNAME="myprocname" TEST_ENV=1
           make check-kovid -j1
           cd ..

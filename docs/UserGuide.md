@@ -138,3 +138,7 @@ When we unload the LKM, the process becomes visible again:
 [  804.956719] unloaded.
 # kill -9 133
 ```
+
+## Note
+
+Please ensure that you have the specific kernel headers for versions 5.10, 5.15, and 6.0 installed in `/lib/modules/<version>/build` to avoid any issues during the build process.
